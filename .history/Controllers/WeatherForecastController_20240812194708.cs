@@ -23,13 +23,13 @@ namespace SchoolManagment.Controllers
             _logger = logger;
         }
 
-        //GET /weatherforecast
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            _logger.LogInformation("Handling GET request");
-            return WeatherForecasts;
-        }
+        // GET /weatherforecast
+        // [HttpGet]
+        // public IEnumerable<WeatherForecast> Get()
+        // {
+        //     _logger.LogInformation("Handling GET request");
+        //     return WeatherForecasts;
+        // }
 
         // [HttpGet]
         // public IActionResult ThrowError([FromQuery] int errorCode)

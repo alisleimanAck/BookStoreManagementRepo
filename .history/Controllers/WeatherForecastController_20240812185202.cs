@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using Serilog;
 
 namespace SchoolManagment.Controllers
 {
@@ -23,20 +23,19 @@ namespace SchoolManagment.Controllers
             _logger = logger;
         }
 
-        //GET /weatherforecast
+        // GET /weatherforecast
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            _logger.LogInformation("Handling GET request");
             return WeatherForecasts;
         }
 
-        // [HttpGet]
+        [HttpGet]
         // public IActionResult ThrowError([FromQuery] int errorCode)
         // {
         //     switch (errorCode)
         //     {
-                
+           
         //         case 401:
         //             throw new UnauthorizedAccessException();
                
@@ -49,20 +48,17 @@ namespace SchoolManagment.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] WeatherForecast forecast)
         {
-            _logger.LogInformation("Handling POST request with data: {@forecast}", forecast);
             WeatherForecasts.Add(forecast);
-            return CreatedAtAction(nameof(Get), new { date = forecast.Date }, forecast);
+            return Ok(forecast);
         }
 
         // PUT /weatherforecast/{date}
         [HttpPut("{date}")]
         public IActionResult Put(DateOnly date, [FromBody] WeatherForecast updatedForecast)
         {
-            _logger.LogInformation("Handling PUT request for date: {date}", date);
             var forecast = WeatherForecasts.FirstOrDefault(wf => wf.Date == date);
             if (forecast == null)
             {
-                _logger.LogWarning("No forecast found for date: {date}", date);
                 return NotFound();
             }
             WeatherForecasts.Remove(forecast);
@@ -74,11 +70,9 @@ namespace SchoolManagment.Controllers
         [HttpDelete("{date}")]
         public IActionResult Delete(DateOnly date)
         {
-            _logger.LogInformation("Handling DELETE request for date: {date}", date);
             var forecast = WeatherForecasts.FirstOrDefault(wf => wf.Date == date);
             if (forecast == null)
             {
-                _logger.LogWarning("No forecast found for date: {date}", date);
                 return NotFound();
             }
             WeatherForecasts.Remove(forecast);

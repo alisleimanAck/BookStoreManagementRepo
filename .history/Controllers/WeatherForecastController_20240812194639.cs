@@ -23,27 +23,27 @@ namespace SchoolManagment.Controllers
             _logger = logger;
         }
 
-        //GET /weatherforecast
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            _logger.LogInformation("Handling GET request");
-            return WeatherForecasts;
-        }
-
+        // GET /weatherforecast
         // [HttpGet]
-        // public IActionResult ThrowError([FromQuery] int errorCode)
+        // public IEnumerable<WeatherForecast> Get()
         // {
-        //     switch (errorCode)
-        //     {
-                
-        //         case 401:
-        //             throw new UnauthorizedAccessException();
-               
-        //         default:
-        //             throw new NullReferenceException();
-        //     }
+        //     _logger.LogInformation("Handling GET request");
+        //     return WeatherForecasts;
         // }
+
+        [HttpGet]
+        public IActionResult ThrowError([FromQuery] int errorCode)
+        {
+            switch (errorCode)
+            {
+                
+                case 401:
+                    throw new UnauthorizedAccessException();
+               
+                default:
+                    throw new NullReferenceException();
+            }
+        }
 
         // POST /weatherforecast
         [HttpPost]

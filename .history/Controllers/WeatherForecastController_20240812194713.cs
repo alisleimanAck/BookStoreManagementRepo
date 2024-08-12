@@ -23,7 +23,7 @@ namespace SchoolManagment.Controllers
             _logger = logger;
         }
 
-        //GET /weatherforecast
+        GET /weatherforecast
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
